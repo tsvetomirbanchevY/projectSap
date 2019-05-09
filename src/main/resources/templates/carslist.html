@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>User Directory</title>
+</head>
+
+<body>
+
+<div class="container">
+
+	<h3>User Directory</h3>
+
+	<table class="table table-bordered table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th>Brand</th>
+				<th>Model</th>
+				<th>City</th>
+				<th>isAvailable</th>
+				<th>Address</th>
+				<!-- more -->
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr th:each="tempCar : ${carslist}">
+
+				<td th:text="${tempCar.brand}"></td>
+				<td th:text="${tempCar.model}"></td>
+				<td th:text="${tempCar.city}"></td>
+				<td th:text="${tempCar.isavailable}"></td>
+				<td th:text="${tempCar.address}"></td>
+
+			</tr>
+		</tbody>
+	</table>
+
+</div>
+
+</body>
+</html>

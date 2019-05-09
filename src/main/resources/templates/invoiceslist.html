@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>invoice Directory</title>
+</head>
+
+<body>
+
+<div class="container">
+
+	<h3>invoice Directory</h3>
+
+	<table class="table table-bordered table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th>total cost</th>
+				<th>firm</th>
+				<th>type</th>
+				<th>date</th>
+				<th>User</th>
+			</tr>
+		</thead>
+		<-- more -->
+
+
+		<tbody>
+			<tr th:each="tempInvoice : ${invoiceslist}">
+
+				<td th:text="${tempInvoice.totalCost}"></td>
+				<td th:text="${tempInvoice.firm}"></td>
+				<td th:text="${tempInvoice.typeInvoice}"></td>
+				<td th:text="${tempInvoice.dateOfInvoice}"></td>
+				<td th:text="${tempInvoice.user.id}"></td>
+
+			</tr>
+		</tbody>
+	</table>
+
+</div>
+
+</body>
+</html>

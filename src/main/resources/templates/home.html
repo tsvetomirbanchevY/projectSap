@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"
+	  xmlns:form="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Home Page</title>
+</head>
+<body>
+<h2>Home Page</h2>
+
+<p>
+	User: <span sec:authentication property = "principal.userName"></span>
+	<br><br>
+	Role: <<span sec:authentication property = "principal.authorities"></span>
+</p>
+
+<div sec:authorize="isAuthenticated()">
+	Authenticated users.
+</div>
+<div sec:authorize="hasRole('boss')">
+	a href="${pageContext.request.contextPath}/boss/findallbosses">boss repo</a>
+</div>
+<div sec:authorize="hasRole('client')">
+	You are a client.
+</div>
+
+<form:form action="${pageContext.request.contextPath}/logout"
+		   method="POST">
+
+	<input type="submit" value="Logout" />
+</form:form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

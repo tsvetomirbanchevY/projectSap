@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Car Directory</title>
+</head>
+
+<body>
+
+<div class="container">
+
+	<h3>Add cars</h3>
+
+	<table class="table table-bordered table-striped">
+		<form action="#" th:action="@{addcars}" th:object="${cars}" method="post">
+
+			<input type="text" th:field="*{brand}" placeholder="brand<">
+
+			<input type="text" th:field="*{model}" placeholder="model">
+
+			<input type="text" th:field="*{city}" placeholder="city">
+
+			<input type="text" th:field="*{isavailable}" placeholder="isavailable">
+
+			<input type="text" th:field="*{address}" placeholder="address">
+
+			<input type="submit" value="add car">
+		</form>
+			</tr>
+		</tbody>
+	</table>
+
+</div>
+
+</body>
+</html>

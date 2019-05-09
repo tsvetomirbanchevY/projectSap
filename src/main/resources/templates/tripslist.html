@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>User Directory</title>
+</head>
+
+<body>
+
+<div class="container">
+
+	<h3>User Directory</h3>
+
+	<table class="table table-bordered table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th>start route</th>
+				<th>end route</th>
+				<th>price</th>
+				<th>date</th>
+				<th>car</th>
+				<th>user</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr th:each="tempTrip : ${tripslist}">
+
+				<td th:text="${tempTrip.start}"></td>
+				<td th:text="${tempTrip.end}"></td>
+				<td th:text="${tempTrip.price}"></td>
+				<td th:text="${tempTrip.date}"></td>
+				<td th:text="${tempTrip.car.id}"></td>
+				<td th:text="${tempTrip.user.id}"></td>
+
+			</tr>
+		</tbody>
+	</table>
+
+</div>
+
+</body>
+</html>

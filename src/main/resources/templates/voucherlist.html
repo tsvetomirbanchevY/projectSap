@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Voucher Directory</title>
+</head>
+
+<body>
+
+<div class="container">
+
+	<h3>Voucher Directory</h3>
+
+	<table class="table table-bordered table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th>ID</th>
+				<th>Text</th>
+				<th>User</th>
+
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr th:each="tempVoucher : ${voucherlist}">
+
+				<td th:text="${tempVoucher.id}"></td>
+				<td th:text="${tempVoucher.text}"></td>
+				<td th:text="${tempVoucher.user.id}"></td>
+
+
+			</tr>
+		</tbody>
+	</table>
+
+</div>
+
+</body>
+</html>

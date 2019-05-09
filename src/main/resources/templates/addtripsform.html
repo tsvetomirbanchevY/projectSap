@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>trip Directory</title>
+</head>
+
+<body>
+
+<div class="container">
+
+	<h3>Add trip</h3>
+
+	<table class="table table-bordered table-striped">
+		<form action="#" th:action="@{/trips/addtrips}" th:object="${trips}" method="post">
+
+			<input type="text" th:field="*{start}" placeholder="user<">
+
+			<input type="text" th:field="*{end}" placeholder="user">
+
+			<input type="text" th:field="*{price}" placeholder="userstaff">
+
+			<input type="text" th:field="*{date}" placeholder="userstaff">
+
+
+			<input type="submit" value="add trip">
+		</form>
+		</tr>
+		</tbody>
+	</table>
+
+</div>
+
+</body>
