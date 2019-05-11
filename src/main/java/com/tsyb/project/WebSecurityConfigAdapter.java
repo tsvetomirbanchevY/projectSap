@@ -2,6 +2,7 @@ package com.tsyb.project;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -21,22 +22,32 @@ public class WebSecurityConfigAdapter extends WebSecurityConfigurerAdapter {
     private DataSource dataSource;
     @Autowired
     private UsersService usersService;
-    @Value("${spring.queries.users-query}")
-    private String usersQuery;
-  //  @Value("${spring.queries.roles-query}")
-  //  private String rolesQuery;
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.authorizeRequests()
-                .antMatchers("/trips/**").hasRole("boss")
-                .and()
-                .formLogin()
-                .loginPage("/login")
-                .permitAll()
-                .and()
-                .logout()
+        http.
+                authorizeRequests()
+                .antMatchers("/").permitAll()
+                .antMatchers("/login").permitAll()
+                .antMatchers("/users/addusersform").permitAll()
+                .antMatchers("/voucher/findallvouchers", "cars/findallcars",
+                       "/invoice/findallinvoices", "/invoice/addinvoices", "/trips/addtrips")
+                .hasAuthority("client")
+              //  .antMatchers("/voucher/**", "/invoice/**", "/cars/**", "/users/deleteusers",
+            //            "/users/updateusers", "/users/findallusers", "/staffcars/addstaffcars",
+             //           "/staffcars/updatestaffcars", "/staffcars/findallstaffcars")
+             //   .hasAuthority("staff")
+               // .antMatchers("/**").hasAuthority("boss")
+                .anyRequest()
+                .authenticated().and().csrf().disable().formLogin()
+                .loginPage("/login").failureUrl("/login?error=true")
+                .defaultSuccessUrl("/home")
+                .usernameParameter("userName")
+                .passwordParameter("password")
+                .and().logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/").and().exceptionHandling()
                 .accessDeniedPage("/access-denied");
@@ -45,26 +56,23 @@ public class WebSecurityConfigAdapter extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception
     {
-        auth.
-                jdbcAuthentication()
-               .dataSource(dataSource)
-               .usersByUsernameQuery(usersQuery)
-              //  .authoritiesByUsernameQuery(rolesQuery)
-                .passwordEncoder(passwordEncoder());
-           //    auth.authenticationProvider(authenticationProvider());
+//        auth.
+//                jdbcAuthentication()
+//               .dataSource(dataSource)
+//               .usersByUsernameQuery(usersQuery)
+//                .authoritiesByUsernameQuery(rolesQuery)
+//                .passwordEncoder(passwordEncoder);
+              auth.authenticationProvider(authenticationProvider());
     }
 
-    public BCryptPasswordEncoder passwordEncoder(){
-       return new BCryptPasswordEncoder();
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider(){
+        DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
+        auth.setUserDetailsService(usersService);
+        auth.setPasswordEncoder(passwordEncoder);
+
+        return auth;
     }
-
-   // public DaoAuthenticationProvider authenticationProvider(){
-    //    DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
-    //    auth.setUserDetailsService(usersService);
-    //    auth.setPasswordEncoder(passwordEncoder());
-
-    //    return auth;
-   // }
 
 }
 

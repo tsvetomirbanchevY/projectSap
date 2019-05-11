@@ -3,6 +3,7 @@ package com.tsyb.project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -54,10 +55,16 @@ public class UsersController {
     }
 
     @PostMapping("/addusers")
-    public String addUser(@ModelAttribute("users") Users user) {
+    public String addUser(@ModelAttribute("users") Users user, BindingResult bindingResult) {
+        Users userExists = usersService.findByUserName(user.getUserName());
+        if (userExists != null) {
+            bindingResult
+                    .rejectValue("userName", "error.user",
+                            "There is already a user registered with the email provided");
+        }
         user.setId(0);
         usersService.save(user);
-        return "";
+        return "/home";
     }
 
     @GetMapping("/updateusersform/{id}")

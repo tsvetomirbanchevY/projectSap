@@ -12,8 +12,9 @@ public class LoginController {
         return "loginform";
     }
 
-    @GetMapping("/user")
+    @GetMapping("/home")
     public String Home(Model model){
         return "home";
     }
+
 }

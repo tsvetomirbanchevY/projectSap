@@ -10,17 +10,54 @@
 <p>
 	User: <span sec:authentication property = "principal.userName"></span>
 	<br><br>
-	Role: <<span sec:authentication property = "principal.authorities"></span>
+	Role: <span sec:authentication property = "principal.authorities"></span>
 </p>
 
 <div sec:authorize="isAuthenticated()">
 	Authenticated users.
 </div>
 <div sec:authorize="hasRole('boss')">
-	a href="${pageContext.request.contextPath}/boss/findallbosses">boss repo</a>
+	<a href="${pageContext.request.contextPath}/users/findallusers">view all users</a>
+	<a href="${pageContext.request.contextPath}/users/updateusers">update a user</a>
+	<a href="${pageContext.request.contextPath}/users/deleteusers">delete a user</a>
+	<a href="${pageContext.request.contextPath}/cars/findallcars">view all cars</a>
+	<a href="${pageContext.request.contextPath}/cars/updatecars">update a car</a>
+	<a href="${pageContext.request.contextPath}/cars/deletecars">delete a car</a>
+	<a href="${pageContext.request.contextPath}/cars/addcars">add a new car</a>
+	<a href="${pageContext.request.contextPath}/voucher/findallvouchers">view all vouchers</a>
+	<a href="${pageContext.request.contextPath}/voucher/updatevouchers">update a voucher</a>
+	<a href="${pageContext.request.contextPath}/voucher/deletevouchers">delete a voucher</a>
+	<a href="${pageContext.request.contextPath}/voucher/addvouchers">add a new voucher</a>
+
 </div>
 <div sec:authorize="hasRole('client')">
-	You are a client.
+	<a href="${pageContext.request.contextPath}/trips/addtrips">create a new trip</a>
+	<a href="${pageContext.request.contextPath}/cars/findallcars">view all cars</a>
+	<a href="${pageContext.request.contextPath}/voucher/findallvouchers">view all vouchers</a>
+	<a href="${pageContext.request.contextPath}/invoice/findallinvoices">view all invoices</a>
+	<a href="${pageContext.request.contextPath}/invoice/addinvoices">add a new invoice</a>
+
+</div>
+<div sec:authorize="hasRole('staff')">
+	<a href="${pageContext.request.contextPath}/users/findallusers">view all users</a>
+	<a href="${pageContext.request.contextPath}/users/updateusers">update a user</a>
+	<a href="${pageContext.request.contextPath}/users/deleteusers">delete a user</a>
+	<a href="${pageContext.request.contextPath}/cars/findallcars">view all cars</a>
+	<a href="${pageContext.request.contextPath}/cars/updatecars">update a car</a>
+	<a href="${pageContext.request.contextPath}/cars/deletecars">delete a car</a>
+	<a href="${pageContext.request.contextPath}/cars/addcars">add a new car</a>
+	<a href="${pageContext.request.contextPath}/voucher/findallvouchers">view all vouchers</a>
+	<a href="${pageContext.request.contextPath}/voucher/updatevouchers">update a voucher</a>
+	<a href="${pageContext.request.contextPath}/voucher/deletevouchers">delete a voucher</a>
+	<a href="${pageContext.request.contextPath}/voucher/addvouchers">add a new voucher</a>
+	<a href="${pageContext.request.contextPath}/staffcars/findallstaffcars">view all repairs</a>
+	<a href="${pageContext.request.contextPath}/staffcars/updatestaffcars">update a repair</a>
+	<a href="${pageContext.request.contextPath}/staffcars/addstaffcars">add a new repair</a>
+	<a href="${pageContext.request.contextPath}/invoice/findallinvoices">view all invoices</a>
+	<a href="${pageContext.request.contextPath}/invoice/updateinvoices">update a invoice</a>
+	<a href="${pageContext.request.contextPath}/invoice/deleteinvoices">delete a invoice</a>
+	<a href="${pageContext.request.contextPath}/invoice/addinvoices">add a new invoice</a>
+
 </div>
 
 <form:form action="${pageContext.request.contextPath}/logout"

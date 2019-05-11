@@ -1,7 +1,7 @@
 insert into users (username, password, email, firstname, lastname, bankaccount, phone, isvalid, city)
-values('az', 'az', 'az', 'az', 'az', 'az', '088', 1, 'sliven'),
-('ti', 'ti', 'ti', 'ti', 'ti', 'ti', '078', 0, 'sofia'),
-('te', 'te', 'te', 'te', 'te', 'te', '087', 0, 'varna');
+values('az', '$2a$04$7GojSf8/kitGfcYqXAMSEuO1UzLmi2JPAOWczU.jyW9LM7xawepa2', 'az', 'az', 'az', 'az', '088', 1, 'sliven'),
+('ti', '$2a$04$7GojSf8/kitGfcYqXAMSEuO1UzLmi2JPAOWczU.jyW9LM7xawepa2', 'ti', 'ti', 'ti', 'ti', '078', 1, 'sofia'),
+('te', 'te', 'te', 'te', 'te', 'te', '087', 1, 'varna');
 
 insert into roles (typeuser)
 values('client'),
@@ -43,6 +43,13 @@ select * from voucher;
 select * from staff_cars;
 select * from invoice_trips; 
 
+select users.email, roles.typeuser
+ from users join roles 
+ on users.id in
+				( select user_id 
+                from users_roles 
+                where users_roles.role_id = roles.id)
+where users.email='az';
 
 
 

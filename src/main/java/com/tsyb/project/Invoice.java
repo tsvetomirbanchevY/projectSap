@@ -25,7 +25,7 @@ public class Invoice {
     @Column(name = "typeinvoice")
     @Enumerated(EnumType.STRING)
     private TypeInvoice typeInvoice;
-    @Column(name = "datefoinvoice")
+    @Column(name = "dateofinvoice")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateOfInvoice;
     @JsonManagedReference

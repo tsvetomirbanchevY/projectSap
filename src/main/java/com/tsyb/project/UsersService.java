@@ -5,7 +5,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import java.util.List;
 
 public interface UsersService
-      //  extends UserDetailsService
+        extends UserDetailsService
 {
 
     List<Users> findAll();
@@ -16,7 +16,7 @@ public interface UsersService
 
     void deleteById(int id);
 
-    Users findByEmail(String email);
+  Users findByUserName(String userName);
 
 }
 

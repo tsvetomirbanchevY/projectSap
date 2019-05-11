@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>User Directory</title>
+</head>
+
+<body>
+
+<div class="container">
+
+	<h3>Add users</h3>
+
+	<table class="table table-bordered table-striped">
+		<form action="#" th:action="@{/invoice/addinvoices/}" th:object="${invoice}" method="post">
+
+			<input type="text" th:field="*{user.id}" placeholder="username">
+
+			<input type="text" th:field="*{car.id}" placeholder="password">
+
+			<input type="text" th:field="*{carMain}" placeholder="email">
+
+			<input type="submit" value="add user">
+		</form>
+		</tr>
+		</tbody>
+	</table>
+
+</div>
+
+</body>
+</html>

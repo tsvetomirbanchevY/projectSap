@@ -5,16 +5,17 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 
 @Service
+@Transactional
 public class UsersServiceImpl implements UsersService {
 
 
@@ -22,6 +23,9 @@ public class UsersServiceImpl implements UsersService {
 
     @Autowired
     private RolesRepository rolesRepository;
+
+    @Autowired
+    BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
     public UsersServiceImpl(UsersRepository usersRepository) {
@@ -50,6 +54,10 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public void save(Users user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setValid(false);
+        Roles userRole = rolesRepository.findByTypeUser("client");
+        user.setRoles(new ArrayList<>(Arrays.asList(userRole)));
         usersRepository.save(user);
     }
 
@@ -59,32 +67,34 @@ public class UsersServiceImpl implements UsersService {
     }
 
 
-   ///@Override
-   // public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-   //     Users user = usersRepository.findByEmail(email);
-  //      if (user == null){
-   //         throw new UsernameNotFoundException("Invalid username or password.");
-   //     }
-    //    return new org.springframework.security.core.userdetails.User(user.getEmail(),
-    //            user.getPassword(),
-    //            mapRolesToAuthorities(user.getRoles()));
-  //  }
+   @Override
+    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+        Users user = usersRepository.findByUserName(userName);
+        if (user == null){
+            throw new UsernameNotFoundException("Invalid username or password.");
+        }
 
-    public Users findByEmail(String email){
-        return usersRepository.findByEmail(email);
+
+        return new org.springframework.security.core.userdetails.User(user.getUserName(),
+                user.getPassword(),
+                mapRolesToAuthorities(user.getRoles()));
+    }
+
+    public Users findByUserName(String userName){
+        return usersRepository.findByUserName(userName);
     }
 
 
- //   private Collection<? extends GrantedAuthority> mapRolesToAuthorities(List<Roles> roles){
-  //      return roles.stream()
-   //             .map(new Function<Roles, SimpleGrantedAuthority>() {
-    //                @Override
-     //               public SimpleGrantedAuthority apply(Roles role) {
-    //                    return new SimpleGrantedAuthority(role.getTypeUser());
-    //                }
-    //            })
-     //           .collect(Collectors.toList());
-  //  }
+    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(List<Roles> roles){
+        return roles.stream()
+                .map(new Function<Roles, SimpleGrantedAuthority>() {
+                    @Override
+                    public SimpleGrantedAuthority apply(Roles role) {
+                        return new SimpleGrantedAuthority(role.getTypeUser());
+                    }
+                })
+                .collect(Collectors.toList());
+    }
 }
 
 

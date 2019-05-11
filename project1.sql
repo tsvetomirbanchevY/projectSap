@@ -15,18 +15,18 @@ isvalid boolean not null default 0,
 city varchar(255) not null
 );
 
+create table roles(
+id int not null primary key auto_increment,
+typeuser varchar(255) not null default 'client'
+);
+
 create table users_roles(
-user_id int,
-role_id int,
+user_id int not null,
+role_id int not null default 1,
 CONSTRAINT FOREIGN KEY(role_id)
 REFERENCES roles(id),
 CONSTRAINT FOREIGN KEY(user_id)
 REFERENCES users(id)
-);
-
-create table roles(
-id int not null primary key auto_increment,
-typeuser ENUM('client', 'staff', 'boss') default 'client'
 );
 
 create table voucher (
