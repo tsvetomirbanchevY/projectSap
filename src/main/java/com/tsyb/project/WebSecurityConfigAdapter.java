@@ -30,12 +30,12 @@ public class WebSecurityConfigAdapter extends WebSecurityConfigurerAdapter {
 
         http.
                 authorizeRequests()
-                .antMatchers("/").permitAll()
+                .antMatchers("/**").permitAll()
                 .antMatchers("/login").permitAll()
-                .antMatchers("/users/addusersform").permitAll()
-                .antMatchers("/voucher/findallvouchers", "cars/findallcars",
-                       "/invoice/findallinvoices", "/invoice/addinvoices", "/trips/addtrips")
-                .hasAuthority("client")
+             //   .antMatchers("/users/addusersform").permitAll()
+              //  .antMatchers("/voucher/findallvouchers", "cars/findallcars",
+            //           "/invoice/findallinvoices", "/invoice/addinvoices", "/trips/addtrips")
+             //   .hasAuthority("client")
               //  .antMatchers("/voucher/**", "/invoice/**", "/cars/**", "/users/deleteusers",
             //            "/users/updateusers", "/users/findallusers", "/staffcars/addstaffcars",
              //           "/staffcars/updatestaffcars", "/staffcars/findallstaffcars")

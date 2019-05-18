@@ -2,6 +2,7 @@ package com.tsyb.project;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.support.GenericWebApplicationContext;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,6 +13,12 @@ public class TripsServiceImpl implements TripsService {
 
 
     private TripsRepository tripsRepository;
+
+    @Autowired
+    private CarsRepository carsRepository;
+
+    @Autowired
+    GenericWebApplicationContext mediator;
 
     @Autowired
     public TripsServiceImpl(TripsRepository tripsRepository) {
@@ -38,9 +45,24 @@ public class TripsServiceImpl implements TripsService {
         return trip;
     }
 
+
     @Override
     public void save(Trips trip) {
+        trip.setUser((Users)mediator.getBean("usertemp"));
+        trip.setPrice(10.00);
+        Cars car = carsRepository.findCarsById(trip.getCar().getId());
+        trip.setStart(car.getAddress());
+        trip.setCar(car);
         tripsRepository.save(trip);
+        car.setAvailable(false);
+        car.setAddress(trip.getEnd());
+        car.setBattery(car.getBattery()-20);
+        List<Trips> tripList = car.getTrips();
+        tripList.add(trip);
+        car.setTrips(tripList);
+        carsRepository.save(car);
+        mediator.registerBean("cartemp", Cars.class, () -> car);
+
     }
 
     @Override

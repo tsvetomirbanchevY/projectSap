@@ -12,7 +12,8 @@ lastname varchar(255) not null,
 bankaccount varchar(255) not null,
 phone varchar(255) not null,
 isvalid boolean not null default 0,
-city varchar(255) not null
+city varchar(255) not null,
+license BLOB
 );
 
 create table roles(
@@ -44,8 +45,9 @@ create table cars (
 id int not null primary key auto_increment,
 brand varchar(255) not null,
 model varchar(255) not null,
-city varchar(255) not null,
+regplate varchar(255) not null,
 isavailable boolean not null,
+battery int not null default 100,
 address varchar(255) not null
 );
 

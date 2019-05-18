@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>User Directory</title>
+    <title>trip Directory</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/registration.css}" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -16,20 +16,12 @@
 
 <div class="container">
 
-    <h3>Add invoices</h3>
+    <h3>Add trip</h3>
 
     <table class="table table-bordered table-striped">
-        <form action="#" th:action="@{/invoice/addinvoices/}" th:object="${invoice}" method="post">
+        <form action="#" th:action="@{/cars/endtrip}" th:object="${cars}" method="post">
 
-            <input type="text" th:field="*{firm}" placeholder="firm">
-
-            <input type="text" th:field="*{typeInvoice}" placeholder="type">
-
-            <input type="datetime-local" th:field="*{dateOfInvoice}" placeholder="date">
-
-            <input type="text" th:field="*{user.id}" placeholder="user id">
-
-            <input type="submit" value="add invoice">
+            <input type="submit" value="end trip">
         </form>
         </tr>
         </tbody>
@@ -38,4 +30,3 @@
 </div>
 
 </body>
-</html>

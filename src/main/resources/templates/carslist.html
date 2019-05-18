@@ -3,10 +3,13 @@
 	  xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:th="http://www.thymeleaf.org">
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>User Directory</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/registration.css}" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -18,27 +21,30 @@
 	<table class="table table-bordered table-striped">
 		<thead class="thead-dark">
 			<tr>
+				<th>Id</th>
 				<th>Brand</th>
 				<th>Model</th>
-				<th>City</th>
+				<th>Battery</th>
 				<th>isAvailable</th>
 				<th>Address</th>
-				<!-- more -->
 			</tr>
 		</thead>
 
 		<tbody>
 			<tr th:each="tempCar : ${carslist}">
 
+				<td th:text="${tempCar.id}"></td>
 				<td th:text="${tempCar.brand}"></td>
 				<td th:text="${tempCar.model}"></td>
-				<td th:text="${tempCar.city}"></td>
-				<td th:text="${tempCar.isavailable}"></td>
+				<td th:text="${tempCar.battery}"></td>
+				<td th:text="${tempCar.available}"></td>
 				<td th:text="${tempCar.address}"></td>
+
 
 			</tr>
 		</tbody>
 	</table>
+	<a href="/trips/addtripsform">create a new trip</a>
 
 </div>
 

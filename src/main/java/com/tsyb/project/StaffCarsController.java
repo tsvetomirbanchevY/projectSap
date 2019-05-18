@@ -1,17 +1,20 @@
 package com.tsyb.project;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.support.GenericWebApplicationContext;
 
 import java.util.List;
 
 
-@RestController
-@RequestMapping(path = "/staffCars")
+@Controller
+@RequestMapping(path = "/staffcars")
 public class StaffCarsController {
 
     private StaffCarsService staffCarsService;
+
 
     public StaffCarsController()
     {
@@ -26,7 +29,7 @@ public class StaffCarsController {
 
     @GetMapping("/findallstaffcars")
     public String findAll(Model model) {
-        model.addAttribute("cstaffarslist", staffCarsService.findAll());
+        model.addAttribute("staffcarslist", staffCarsService.findAll());
         return "staffcarslist";
     }
 

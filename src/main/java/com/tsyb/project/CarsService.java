@@ -12,6 +12,11 @@ public interface CarsService {
 
     void deleteById(int id);
 
+    List<Cars> findByIsAvailable(String city);
+
+    Cars findCarsById(int id);
+
+
 }
 
 

@@ -54,12 +54,15 @@ public class Users {
     @JsonManagedReference
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = {CascadeType.ALL})
     private List<Invoice> invoices;
+    @Lob
+    @Column(name="license")
+    private byte[] license;
 
     public Users() {
         //default
     }
 
-    public Users(Integer id, String userName, String password, String email, String firstName, String lastName, String bankAccount, String city, boolean isValid, String phone, List<Roles> roles, List<Voucher> staffVouchers, List<Voucher> vouchers, List<StaffCars> staffCars, List<Trips> trips, List<Invoice> invoices) {
+    public Users(Integer id, String userName, String password, String email, String firstName, String lastName, String bankAccount, String city, boolean isValid, String phone, List<Roles> roles, List<Voucher> staffVouchers, List<Voucher> vouchers, List<StaffCars> staffCars, List<Trips> trips, List<Invoice> invoices, byte[] license) {
         this.id = id;
         this.userName = userName;
         this.password = password;
@@ -76,6 +79,7 @@ public class Users {
         this.staffCars = staffCars;
         this.trips = trips;
         this.invoices = invoices;
+        this.license = license;
     }
 
     public Integer getId() {
@@ -196,6 +200,14 @@ public class Users {
 
     public void setTrips(List<Trips> trips) {
         this.trips = trips;
+    }
+
+    public byte[] getLicense() {
+        return license;
+    }
+
+    public void setLicense(byte[] license) {
+        this.license = license;
     }
 
     public List<Invoice> getInvoices() {

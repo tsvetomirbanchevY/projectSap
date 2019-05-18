@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.support.GenericWebApplicationContext;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ import java.util.List;
 public class TripsController {
 
     private TripsService tripsService;
+
 
     public TripsController()
     {
@@ -48,9 +50,7 @@ public class TripsController {
     @GetMapping("/addtripsform")
     public String addTripsForm(Model model) {
         Trips trip= new Trips();
-
         model.addAttribute("trips", trip);
-
         return "addtripsform";
     }
 
@@ -58,8 +58,9 @@ public class TripsController {
     public String addTrip(@ModelAttribute("trips") Trips trip) {
         trip.setId(0);
         tripsService.save(trip);
-        return "";
+        return "endtrip";
     }
+
 
     @GetMapping("/updatetripsform/{id}")
     public String updateTripsForm(@PathVariable("trips") int id, Model model) {

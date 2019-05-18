@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.support.GenericWebApplicationContext;
 
 import java.util.*;
 import java.util.function.Function;
@@ -26,6 +27,9 @@ public class UsersServiceImpl implements UsersService {
 
     @Autowired
     BCryptPasswordEncoder passwordEncoder;
+
+    @Autowired
+    private GenericWebApplicationContext context;
 
     @Autowired
     public UsersServiceImpl(UsersRepository usersRepository) {
@@ -72,9 +76,11 @@ public class UsersServiceImpl implements UsersService {
         Users user = usersRepository.findByUserName(userName);
         if (user == null){
             throw new UsernameNotFoundException("Invalid username or password.");
+        }else {
+
+                context.registerBean("usertemp", Users.class, () -> user);
+
         }
-
-
         return new org.springframework.security.core.userdetails.User(user.getUserName(),
                 user.getPassword(),
                 mapRolesToAuthorities(user.getRoles()));

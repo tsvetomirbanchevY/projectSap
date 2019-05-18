@@ -14,6 +14,9 @@ public class CarsServiceImpl implements CarsService {
     private CarsRepository carsRepository;
 
     @Autowired
+    private UsersRepository usersRepository;
+
+    @Autowired
     public CarsServiceImpl(CarsRepository carsRepository) {
         this.carsRepository = carsRepository;
     }
@@ -47,6 +50,20 @@ public class CarsServiceImpl implements CarsService {
     public void deleteById(int id) {
         carsRepository.deleteById(id);
     }
+
+    @Override
+    public List<Cars> findByIsAvailable(String city){
+        List<Cars> findByIsAvailable = carsRepository.findByIsAvailable(city);
+
+         return findByIsAvailable;
+    }
+
+    public Cars findCarsById(int id)
+    {
+        return carsRepository.findCarsById(id);
+    }
+
+
 
 }
 

@@ -14,7 +14,6 @@ import java.util.List;
 public class UsersController {
 
     private UsersService usersService;
-    private VoucherService voucherService;
 
     public UsersController()
     {
@@ -22,15 +21,13 @@ public class UsersController {
     }
 
     @Autowired
-    public UsersController(UsersService usersService,VoucherService voucherService) {
+    public UsersController(UsersService usersService) {
         this.usersService = usersService;
-        this.voucherService = voucherService;
     }
 
     @GetMapping("/findallusers")
     public String findAll(Model model) {
         model.addAttribute("userslist", usersService.findAll());
-     //   model.addAttribute("voucherslist", voucherService.findAll());
          return "userslist";
     }
 

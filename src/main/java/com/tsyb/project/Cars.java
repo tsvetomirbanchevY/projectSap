@@ -19,10 +19,12 @@ public class Cars
     private String brand;
     @Column(name = "model")
     private String model;
-    @Column(name = "city")
-    private String city;
+    @Column(name = "regplate")
+    private String regPlate;
     @Column(name = "isavailable")
     private boolean isAvailable;
+    @Column(name = "battery")
+    private int battery;
     @Column(name = "address")
     private String address;
     @JsonManagedReference
@@ -37,12 +39,13 @@ public class Cars
         //default
     }
 
-    public Cars(Integer id, String brand, String model, String city, boolean isAvailable, String address, List<Trips> trips, List<StaffCars> staffCars) {
+    public Cars(Integer id, String brand, String model, String regPlate, boolean isAvailable, int battery, String address, List<Trips> trips, List<StaffCars> staffCars) {
         this.id = id;
         this.brand = brand;
         this.model = model;
-        this.city = city;
+        this.regPlate = regPlate;
         this.isAvailable = isAvailable;
+        this.battery = battery;
         this.address = address;
         this.trips = trips;
         this.staffCars = staffCars;
@@ -54,6 +57,14 @@ public class Cars
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getRegPlate() {
+        return regPlate;
+    }
+
+    public void setRegPlate(String regPlate) {
+        this.regPlate = regPlate;
     }
 
     public String getBrand() {
@@ -72,12 +83,12 @@ public class Cars
         this.model = model;
     }
 
-    public String getCity() {
-        return city;
+    public int getBattery() {
+        return battery;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setBattery(int battery) {
+        this.battery = battery;
     }
 
     public boolean isAvailable() {

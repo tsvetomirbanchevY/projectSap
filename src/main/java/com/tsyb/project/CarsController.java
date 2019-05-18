@@ -4,12 +4,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.support.GenericWebApplicationContext;
+
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/cars")
 public class CarsController {
 
     private CarsService carsService;
+
+    @Autowired
+    private GenericWebApplicationContext context;
+
 
     public CarsController() {
         //default
@@ -18,6 +25,25 @@ public class CarsController {
     @Autowired
     public CarsController(CarsService carsService) {
         this.carsService = carsService;
+    }
+
+    @GetMapping("/findallavailablecars")
+    public String findAllAvailable(Model model) {
+        Users user = (Users)context.getBean("usertemp");
+        System.out.println(user.getUserName());
+
+        model.addAttribute("carslist", carsService.findByIsAvailable(user.getCity()));
+        return "carslist";
+    }
+
+    @PostMapping("/endtrip")
+    public String endTrip(Model model) {
+        Cars currentCar = (Cars)context.getBean("cartemp");
+        if(currentCar.getBattery()!=0){
+            currentCar.setAvailable(true);
+        }
+        carsService.save(currentCar);
+        return "/home";
     }
 
 

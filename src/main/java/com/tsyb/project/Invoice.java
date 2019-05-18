@@ -2,6 +2,7 @@ package com.tsyb.project;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.*;
@@ -26,6 +27,8 @@ public class Invoice {
     @Enumerated(EnumType.STRING)
     private TypeInvoice typeInvoice;
     @Column(name = "dateofinvoice")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateOfInvoice;
     @JsonManagedReference

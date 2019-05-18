@@ -2,6 +2,7 @@ package com.tsyb.project;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.support.GenericWebApplicationContext;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,6 +13,12 @@ public class VoucherServiceImpl implements VoucherService {
 
 
     private VoucherRepository voucherRepository;
+
+    @Autowired
+    GenericWebApplicationContext mediator;
+
+    @Autowired
+    UsersRepository usersRepository;
 
     @Autowired
     public VoucherServiceImpl(VoucherRepository voucherRepository) {
@@ -40,7 +47,20 @@ public class VoucherServiceImpl implements VoucherService {
 
     @Override
     public void save(Voucher voucher) {
+        Users staffUser = (Users)mediator.getBean("usertemp");
+        voucher.setUser(staffUser);
+        Users user = usersRepository.findByUserName(voucher.getUser().getUserName());
+        voucher.setUser(user);
         voucherRepository.save(voucher);
+        List<Voucher> userList = user.getVouchers();
+        List<Voucher> userStaffList = staffUser.getStaffVouchers();
+        userList.add(voucher);
+        userStaffList.add(voucher);
+        user.setVouchers(userList);
+        staffUser.setStaffVouchers(userStaffList);
+        usersRepository.save(user);
+        usersRepository.save(staffUser);
+
     }
 
     @Override
