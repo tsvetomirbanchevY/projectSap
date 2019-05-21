@@ -12,6 +12,9 @@ public interface VoucherService {
 
     void deleteById(int id);
 
+    void update(Voucher user);
+
+
 }
 
 

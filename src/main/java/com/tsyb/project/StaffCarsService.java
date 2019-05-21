@@ -12,6 +12,8 @@ public interface StaffCarsService {
 
     void deleteById(int id);
 
+    void update(StaffCars staffcar);
+
 }
 
 

@@ -28,7 +28,6 @@ public class Invoice {
     private TypeInvoice typeInvoice;
     @Column(name = "dateofinvoice")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateOfInvoice;
     @JsonManagedReference

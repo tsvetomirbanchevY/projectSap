@@ -3,14 +3,15 @@
 	  xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:th="http://www.thymeleaf.org">
 <head>
-	<!-- Required meta tags -->
+
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>trip Directory</title>
-	<link rel="stylesheet" type="text/css" th:href="@{/css/registration.css}" />
+
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/registration.css}" />
 </head>
 
 <body>
@@ -22,11 +23,11 @@
 	<table class="table table-bordered table-striped">
 		<form action="#" th:action="@{/trips/addtrips}" th:object="${trips}" method="post">
 
-			<input type="text" th:field="*{end}" placeholder="end">
+			<input type="text" th:field="*{end}" placeholder="end"><br>
 
-			<input type="date" th:field="*{date}" placeholder="date">
+			<input type="date" th:field="*{date}" placeholder="date"><br>
 
-			<input type="text" th:field="*{car.id}" placeholder="car">
+			<input type="text" th:field="*{car.id}" placeholder="car"><br>
 
 			<input type="submit" value="add trip">
 		</form>

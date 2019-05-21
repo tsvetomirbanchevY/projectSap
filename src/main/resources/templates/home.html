@@ -3,9 +3,11 @@
 	  xmlns:form="http://www.w3.org/1999/xhtml">
 <head>
 	<title>Home Page</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/registration.css}" />
+
 </head>
 <body>
 
@@ -14,11 +16,11 @@
 
 <h2>Home Page</h2>
 
-<p>
+<h3>
 	Logged user: <span sec:authentication="name"></span> |
 	Roles: <span sec:authentication="principal.authorities"></span> |
 	<a th:href="@{/logout}">Sign Out</a>
-</p>
+</h3>
 
 <div sec:authorize="isAuthenticated()">
 	Authenticated users.
@@ -26,41 +28,35 @@
 <div sec:authorize="hasAuthority('boss')">
 	<a href="/users/findallusers">view all users</a><br>
 	<a href="/users/updateusersform">update a user</a><br>
-	<a href="/users/deleteusers">delete a user</a><br>
 	<a href="/cars/findallcars">view all cars</a><br>
 	<a href="/cars/updatecarsform">update a car</a><br>
 	<a href="/cars/deletecars">delete a car</a><br>
 	<a href="/cars/addcarsform">add a new car</a><br>
 	<a href="/voucher/findallvouchers">view all vouchers</a><br>
 	<a href="/voucher/updatevouchersform">update a voucher</a><br>
-	<a href="/voucher/deletevouchers">delete a voucher</a><br>
 	<a href="/voucher/addvouchersform">add a new voucher</a><br>
 </div>
-<div sec:authorize="hasRole('client')">
+<div sec:authorize="hasAuthority('client')">
 	<a href="/trips/addtripsform">create a new trip</a><br>
-	<a href="/cars/findallcars">view all cars</a><br>
+	<a href="/cars/findallavailablecars">view all cars</a><br>
 	<a href="/voucher/findallvouchers">view all vouchers</a><br>
 	<a href="/invoice/findallinvoices">view all invoices</a><br>
 	<a href="/invoice/addinvoicesform">add a new invoice</a><br>
 </div>
-<div sec:authorize="hasRole('staff')">
+<div sec:authorize="hasAuthority('staff')">
 	<a href="/users/findallusers">view all users</a><br>
 	<a href="/users/updateusersform">update a user</a><br>
-	<a href="/users/deleteusers">delete a user</a><br>
 	<a href="/cars/findallcars">view all cars</a><br>
 	<a href="/cars/updatecarsform">update a car</a><br>
-	<a href="/cars/deletecars">delete a car</a><br>
 	<a href="/cars/addcarsform">add a new car</a><br>
 	<a href="/voucher/findallvouchers">view all vouchers</a><br>
 	<a href="/voucher/updatevouchersform">update a voucher</a><br>
-	<a href="/voucher/deletevouchers">delete a voucher</a><br>
 	<a href="/voucher/addvouchersform">add a new voucher</a><br>
 	<a href="/staffcars/findallstaffcars">view all repairs</a><br>
 	<a href="/staffcars/updatestaffcarsform">update a repair</a><br>
 	<a href="/staffcars/addstaffcarsform">add a new repair</a><br>
 	<a href="/invoice/findallinvoices">view all invoices</a><br>
 	<a href="/invoice/updateinvoicesform">update a invoice</a><br>
-	<a href="/invoice/deleteinvoices">delete a invoice</a><br>
 	<a href="/invoice/addinvoicesform">add a new invoice</a><br>
 </div>
 </form:form>

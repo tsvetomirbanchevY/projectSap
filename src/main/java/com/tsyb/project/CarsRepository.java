@@ -13,7 +13,8 @@ public interface CarsRepository extends JpaRepository<Cars, Integer> {
             "t.car = c.id " +
             "join Users u on " +
             "t.user = u.id " +
-            "where c.address like %?1%")
+            "where c.isAvailable = true " +
+            "and c.address like %?1%")
     List<Cars> findByIsAvailable(String city);
 
     Cars findCarsById(int id);

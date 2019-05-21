@@ -73,10 +73,10 @@ public class TripsController {
         return "updatetripsform";
     }
 
-    @PostMapping("/updatetrips")
-    public String updateTrip(Model model, @ModelAttribute("trips") Trips trip) {
+    @PostMapping("/updatetrips/{id}")
+    public String updateTrip(@PathVariable("id") int id, Model model, @ModelAttribute("trips") Trips trip) {
 
-        tripsService.save(trip);
+        tripsService.update(trip);
         model.addAttribute("tripslist", tripsService.findAll());
 
         return "";

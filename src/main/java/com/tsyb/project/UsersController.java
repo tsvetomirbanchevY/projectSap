@@ -75,9 +75,8 @@ public class UsersController {
         return "updateusersform";
     }
 
-    @PostMapping("/updateusers")
-    public String updateUser(Model model, @ModelAttribute("users") Users user) {
-
+    @PostMapping("/updateusers/{id}")
+    public String updateUser(Model model, @ModelAttribute("users") Users user, @PathVariable("id") int id) {
         usersService.save(user);
         model.addAttribute("userslist", usersService.findAll());
         return "userslist";

@@ -18,6 +18,12 @@ public class TripsServiceImpl implements TripsService {
     private CarsRepository carsRepository;
 
     @Autowired
+    private UsersRepository usersRepository;
+
+    @Autowired
+    private InvoiceService invoiceService;
+
+    @Autowired
     GenericWebApplicationContext mediator;
 
     @Autowired
@@ -56,12 +62,22 @@ public class TripsServiceImpl implements TripsService {
         tripsRepository.save(trip);
         car.setAvailable(false);
         car.setAddress(trip.getEnd());
-        car.setBattery(car.getBattery()-20);
         List<Trips> tripList = car.getTrips();
         tripList.add(trip);
         car.setTrips(tripList);
         carsRepository.save(car);
         mediator.registerBean("cartemp", Cars.class, () -> car);
+        mediator.registerBean("triptemp", Trips.class, () -> trip);
+
+    }
+
+    @Override
+    public void update(Trips trip) {
+        int idCar = trip.getCar().getId();
+        String userName = trip.getUser().getUserName();
+        trip.setCar(carsRepository.findCarsById(idCar));
+        trip.setUser(usersRepository.findByUserName(userName));
+        tripsRepository.save(trip);
 
     }
 

@@ -2,6 +2,7 @@ package com.tsyb.project;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.support.GenericWebApplicationContext;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping(path = "/staffcars")
+
 public class StaffCarsController {
 
     private StaffCarsService staffCarsService;
@@ -73,13 +75,13 @@ public class StaffCarsController {
         return "updatestaffcarsform";
     }
 
-    @PostMapping("/updatestaffcars")
-    public String updateStaffCar(Model model, @ModelAttribute("staffcars") StaffCars staffCar) {
+    @PostMapping("/updatestaffcars/{id}")
+    public String updateStaffCar(Model model, @PathVariable("id") int id, @ModelAttribute("staffcars") StaffCars staffCar) {
 
-        staffCarsService.save(staffCar);
+        staffCarsService.update(staffCar);
         model.addAttribute("staffcarslist", staffCarsService.findAll());
 
-        return "";
+        return "staffcarslist";
     }
 
 

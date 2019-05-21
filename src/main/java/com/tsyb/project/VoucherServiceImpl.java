@@ -48,7 +48,7 @@ public class VoucherServiceImpl implements VoucherService {
     @Override
     public void save(Voucher voucher) {
         Users staffUser = (Users)mediator.getBean("usertemp");
-        voucher.setUser(staffUser);
+        voucher.setUserStaff(staffUser);
         Users user = usersRepository.findByUserName(voucher.getUser().getUserName());
         voucher.setUser(user);
         voucherRepository.save(voucher);
@@ -60,7 +60,16 @@ public class VoucherServiceImpl implements VoucherService {
         staffUser.setStaffVouchers(userStaffList);
         usersRepository.save(user);
         usersRepository.save(staffUser);
+    }
 
+    @Override
+    public void update(Voucher voucher) {
+        String userName = voucher.getUser().getUserName();
+        Users user = usersRepository.findByUserName(userName);
+        Users userStaff = usersRepository.findByUserName(voucher.getUserStaff().getUserName());
+        voucher.setUser(user);
+        voucher.setUserStaff(userStaff);
+        voucherRepository.save(voucher);
     }
 
     @Override

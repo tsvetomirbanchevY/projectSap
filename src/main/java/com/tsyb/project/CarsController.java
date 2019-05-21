@@ -43,7 +43,7 @@ public class CarsController {
             currentCar.setAvailable(true);
         }
         carsService.save(currentCar);
-        return "/home";
+        return "addinvoicesform";
     }
 
 
@@ -99,7 +99,7 @@ public class CarsController {
         carsService.save(car);
         model.addAttribute("carslist", carsService.findAll());
 
-        return "";
+        return "carslist";
     }
 
 

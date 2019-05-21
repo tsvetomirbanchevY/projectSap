@@ -67,7 +67,7 @@ REFERENCES cars(id)
 
 create table invoice(
 id int not null primary key auto_increment,
-typeinvoice ENUM('monthly', 'daily', 'overall'),
+typeinvoice ENUM('monthly', 'daily', 'overall') default 'daily',
 dateofinvoice DATETIME default now(),
 totalcost double not null,
 firm varchar(255) not null default 'spark',

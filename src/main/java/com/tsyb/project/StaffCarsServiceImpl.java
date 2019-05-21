@@ -2,6 +2,7 @@ package com.tsyb.project;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.support.GenericWebApplicationContext;
 
 import java.util.List;
@@ -62,6 +63,15 @@ public class StaffCarsServiceImpl implements StaffCarsService {
         car.setStaffCars(carStaffList);
         carsRepository.save(car);
         usersRepository.save(staffUser);
+        staffCarsRepository.save(staffCar);
+    }
+
+    @Override
+    public void update(StaffCars staffCar) {
+        int idCar = staffCar.getCar().getId();
+        String userName = staffCar.getUser().getUserName();
+        staffCar.setCar(carsRepository.findCarsById(idCar));
+        staffCar.setUser(usersRepository.findByUserName(userName));
         staffCarsRepository.save(staffCar);
     }
 

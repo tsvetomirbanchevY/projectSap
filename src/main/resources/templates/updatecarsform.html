@@ -19,19 +19,17 @@
 	<h3>update cars</h3>
 
 	<table class="table table-bordered table-striped">
-		<form action="#" th:action="@{/cars/updatecars/}" th:object="${cars}" method="post">
+		<form action="#" th:action="@{/cars/updatecars/{id}(id=${cars.id}}" th:object="${cars}" method="post">
 
-			<input type="text" th:field="*{id}" placeholder="id">
+			<input type="text" th:field="*{brand}" placeholder="brand"><br>
 
-			<input type="text" th:field="*{brand}" placeholder="brand">
+			<input type="text" th:field="*{model}" placeholder="model"><br>
 
-			<input type="text" th:field="*{model}" placeholder="model">
+			<input type="text" th:field="*{regPlate}" placeholder="regplate"><br>
 
-			<input type="text" th:field="*{regPlate}" placeholder="regplate">
+			<input type="text" th:field="*{available}" placeholder="isavailable"><br>
 
-			<input type="text" th:field="*{available}" placeholder="isavailable">
-
-			<input type="text" th:field="*{address}" placeholder="address">
+			<input type="text" th:field="*{address}" placeholder="address"><br>
 
 			<input type="submit" value="update car">
 		</form>

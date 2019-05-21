@@ -6,10 +6,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Car Directory</title>
-	<link rel="stylesheet" type="text/css" th:href="@{/css/registration.css}" />
+
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/registration.css}" />
 </head>
 
 <body>
@@ -21,15 +22,15 @@
 	<table class="table table-bordered table-striped">
 		<form action="#" th:action="@{/cars/addcars}" th:object="${cars}" method="post">
 
-			<input type="text" th:field="*{model}" placeholder="model">
+			<input type="text" th:field="*{model}" placeholder="model"><br>
 
-			<input type="text" th:field="*{brand}" placeholder="brand">
+			<input type="text" th:field="*{brand}" placeholder="brand"><br>
 
-			<input type="text" th:field="*{regPlate}" placeholder="regplate">
+			<input type="text" th:field="*{regPlate}" placeholder="regplate"><br>
 
-			<input type="text" th:field="*{available}" placeholder="isavailable">
+			<input type="text" th:field="*{available}" placeholder="isavailable"><br>
 
-			<input type="text" th:field="*{address}" placeholder="address">
+			<input type="text" th:field="*{address}" placeholder="address"><br>
 
 			<input type="submit" value="add car">
 		</form>

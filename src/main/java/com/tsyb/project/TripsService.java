@@ -12,6 +12,8 @@ public interface TripsService {
 
     void deleteById(int id);
 
+    void update(Trips trip);
+
 }
 
 

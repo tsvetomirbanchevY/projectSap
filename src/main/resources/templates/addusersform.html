@@ -6,36 +6,37 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>User Directory</title>
-	<link rel="stylesheet" type="text/css" th:href="@{/css/registration.css}" />
+
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/registration.css}" />
 </head>
 
 <body>
 
 <div class="container">
 
-	<h3>Add users</h3>
+	<h3>Register</h3>
 
 	<table class="table table-bordered table-striped">
 		<form action="#" th:action="@{/users/addusers/}" th:object="${users}" method="post">
 
-			<input type="text" th:field="*{userName}" placeholder="username">
+			<input type="text" th:field="*{userName}" placeholder="username"><br>
 
-			<input type="text" th:field="*{password}" placeholder="password">
+			<input type="text" th:field="*{password}" placeholder="password"><br>
 
-			<input type="text" th:field="*{email}" placeholder="email">
+			<input type="text" th:field="*{email}" placeholder="email"><br>
 
-			<input type="text" th:field="*{firstName}" placeholder="firstname">
+			<input type="text" th:field="*{firstName}" placeholder="firstname"><br>
 
-			<input type="text" th:field="*{lastName}" placeholder="lastname">
+			<input type="text" th:field="*{lastName}" placeholder="lastname"><br>
 
-			<input type="text" th:field="*{bankAccount}" placeholder="bankaccount">
+			<input type="text" th:field="*{bankAccount}" placeholder="bankaccount"><br>
 
-			<input type="text" th:field="*{phone}" placeholder="phone">
+			<input type="text" th:field="*{phone}" placeholder="phone"><br>
 
-			<input type="text" th:field="*{city}" placeholder="city">
+			<input type="text" th:field="*{city}" placeholder="city"><br>
 
 			<button type="submit" class="btn btn-success">Register</button>
 		</form>

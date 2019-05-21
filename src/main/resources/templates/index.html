@@ -2,18 +2,27 @@
 <html xmlns:th="http://www.springframework.org/schema/data/jaxb">
 <head>
 <title>app</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/registration.css}" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/registration.css}" />
+
 </head>
 <body>
 
-<h1>My App </h1>
-<a href="/login">login</a>
-<a href="/users/addusersform">register</a>
-
-
+<h1 align="center">Sparks</h1>
+<br>
+<br>
+<form align="center" action="/login">
+    <input type="submit" value="Login" />
+</form>
+<br>
+<br>
+<form align="center" action="/users/addusersform">
+    <input type="submit" value="Register" />
+</form>
+<br>
+<img align = "middle" src="../static/images/logo.png" width="100" th:src="@{images/logo.png}"/>
 
 </body>
 </html>

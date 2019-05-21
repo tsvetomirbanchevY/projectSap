@@ -2,7 +2,9 @@ package com.tsyb.project;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.support.GenericWebApplicationContext;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,6 +14,12 @@ public class InvoiceServiceImpl implements InvoiceService {
 
 
     private InvoiceRepository invoiceRepository;
+
+    @Autowired
+    UsersRepository usersRepository;
+
+    @Autowired
+    GenericWebApplicationContext mediator;
 
     @Autowired
     public InvoiceServiceImpl(InvoiceRepository invoiceRepository) {
@@ -40,12 +48,36 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     @Override
     public void save(Invoice invoice) {
+        Trips trip =(Trips)mediator.getBean("triptemp");
+        invoice.setTotalCost(trip.getPrice());
+        invoice.setUser((Users)mediator.getBean("usertemp"));
+        invoice.setFirm("Sparks");
+        invoice.setDateOfInvoice(trip.getDate());
+        invoice.addTrip(trip);
+       invoiceRepository.save(invoice);
+    }
+
+
+
+    @Override
+    public void update(Invoice invoice) {
+        String name = invoice.getUser().getUserName();
+        Users user = usersRepository.findByUserName(name);
+        invoice.setUser(user);
         invoiceRepository.save(invoice);
     }
+
 
     @Override
     public void deleteById(int theId) {
         invoiceRepository.deleteById(theId);
+    }
+
+
+    @Override
+    public List<Invoice> findAllDaily(int userId)
+    {
+        return invoiceRepository.findAllDaily(userId);
     }
 
 }

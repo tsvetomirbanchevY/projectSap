@@ -1,5 +1,6 @@
 package com.tsyb.project;
 
+import java.util.Date;
 import java.util.List;
 
 public interface InvoiceService {
@@ -11,6 +12,11 @@ public interface InvoiceService {
     void save(Invoice invoice);
 
     void deleteById(int id);
+
+    void update(Invoice invoice);
+
+    List<Invoice> findAllDaily(int userId);
+
 
 }
 

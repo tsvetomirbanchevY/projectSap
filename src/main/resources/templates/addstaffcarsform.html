@@ -3,7 +3,6 @@
 	  xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:th="http://www.thymeleaf.org">
 <head>
-	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>User Directory</title>
@@ -22,9 +21,9 @@
 	<table class="table table-bordered table-striped">
 		<form action="#" th:action="@{/staffcars/addstaffcars/}" th:object="${staffcars}" method="post">
 
-			<input type="text" th:field="*{car.id}" placeholder="password">
+			<input type="number" th:field="*{car.id}" placeholder="car id"><br>
 
-			<input type="text" th:field="*{carMain}" placeholder="email">
+			<input type="text" th:field="*{carMain}" placeholder="type repair"><br>
 
 			<input type="submit" value="add repair">
 		</form>

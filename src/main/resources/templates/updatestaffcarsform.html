@@ -19,13 +19,13 @@
 	<h3>Add repairs</h3>
 
 	<table class="table table-bordered table-striped">
-		<form action="#" th:action="@{/invoice/addinvoices/}" th:object="${invoice}" method="post">
+		<form action="#" th:action="@{/staffcars/updatestaffcars/{id}(id=${staffcars.id})}" th:object="${staffcars}" method="post">
 
-			<input type="text" th:field="*{user.id}" placeholder="username">
+			<input type="text" th:field="*{user.userName}" placeholder="username"><br>
 
-			<input type="text" th:field="*{car.id}" placeholder="password">
+			<input type="number" th:field="*{car.id}" placeholder="car id"><br>
 
-			<input type="text" th:field="*{carMain}" placeholder="email">
+			<input type="text" th:field="*{carMain}" placeholder="type of maintanence"><br>
 
 			<input type="submit" value="update repair">
 		</form>

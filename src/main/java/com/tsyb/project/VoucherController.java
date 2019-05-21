@@ -70,10 +70,10 @@ public class VoucherController {
         return "updatevouchersform";
     }
 
-    @PostMapping("/updatevouchers")
-    public String updateVoucher(Model model, @ModelAttribute("voucher") Voucher voucher) {
+    @PostMapping("/updatevouchers/{id}")
+    public String updateVoucher(Model model, @PathVariable("id") int id, @ModelAttribute("voucher") Voucher voucher) {
 
-        voucherService.save(voucher);
+        voucherService.update(voucher);
         model.addAttribute("voucherslist", voucherService.findAll());
 
         return "";

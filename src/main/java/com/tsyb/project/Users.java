@@ -2,6 +2,7 @@ package com.tsyb.project;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import java.util.Base64;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ public class Users {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Roles> roles;
     @JsonManagedReference
-    @OneToMany(mappedBy = "userStaff", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "userStaff", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     private List<Voucher> staffVouchers;
     @JsonManagedReference
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
@@ -261,5 +262,11 @@ public class Users {
         }
 
         invoices.add(tempInvoice);
+    }
+
+    public String generateBase64Image()
+    {
+       return Base64.getEncoder().encodeToString(getLicense());
+
     }
 }

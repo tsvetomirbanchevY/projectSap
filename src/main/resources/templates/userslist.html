@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
 	  xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:th="http://www.thymeleaf.org">
+	  xmlns:th="http://www.thymeleaf.org" xmlns:display="http://www.w3.org/1999/xhtml">
 <head>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -29,6 +29,7 @@
 				<th>Bank Account</th>
 				<th>Phone</th>
 				<th>City</th>
+				<th>License</th>
 <!-- more -->
 			</tr>
 		</thead>
@@ -44,6 +45,9 @@
 				<td th:text="${tempUser.bankAccount}"></td>
 				<td th:text="${tempUser.phone}"></td>
 				<td th:text="${tempUser.city}"></td>
+				<td><img th:if="*{tempUser.license != null}" th:src="@{'data:image/jpg;base64,' + *{T(org.springframework.util.Base64Utils).encodeToString(tempUser.license)}}"/>
+					</td>
+
 		</tbody>
 	</table>
 </div>

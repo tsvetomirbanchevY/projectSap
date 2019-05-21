@@ -4,7 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.support.GenericWebApplicationContext;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 
@@ -13,6 +17,9 @@ import java.util.List;
 public class InvoiceController {
 
     private InvoiceService invoiceService;
+
+    @Autowired
+    GenericWebApplicationContext context;
 
     public InvoiceController()
     {
@@ -27,6 +34,13 @@ public class InvoiceController {
     @GetMapping("/findallinvoices")
     public String findAll(Model model) {
         model.addAttribute("invoiceslist", invoiceService.findAll());
+        return "invoiceslist";
+    }
+
+    @GetMapping("/findalldailyinvoices")
+    public String findAllDaily(Model model) {
+        Users user = (Users)context.getBean("usertemp");
+        model.addAttribute("invoiceslist", invoiceService.findAllDaily(user.getId()));
         return "invoiceslist";
     }
 
@@ -56,7 +70,7 @@ public class InvoiceController {
     public String addInvoice(@ModelAttribute("invoice") Invoice invoice) {
         invoice.setId(0);
         invoiceService.save(invoice);
-        return "";
+        return "home";
     }
 
     @GetMapping("/updateinvoicesform/{id}")
@@ -70,13 +84,13 @@ public class InvoiceController {
         return "updateinvoicesform";
     }
 
-    @PostMapping("/updateinvoices")
-    public String updateInvoice(Model model, @ModelAttribute("invoice") Invoice invoice) {
+    @PostMapping("/updateinvoices/{id}")
+    public String updateInvoice(Model model, @PathVariable("id") int id, @ModelAttribute("invoice") Invoice invoice) {
 
-        invoiceService.save(invoice);
+        invoiceService.update(invoice);
         model.addAttribute("invoiceslist", invoiceService.findAll());
 
-        return "";
+        return "invoiceslist";
     }
 
 

@@ -19,18 +19,18 @@
 	<h3>Update voucher</h3>
 
 	<table class="table table-bordered table-striped">
-		<form action="#" th:action="@{/voucher/updatevouchers/}" th:object="${voucher}" method="post">
+		<form action="#" th:action="@{/voucher/updatevouchers/{id}(id=${voucher.id})}" th:object="${voucher}" method="post">
 
-			<input type="text" th:field="*{textm}" placeholder="textmessage<">
+			<input type="text" th:field="*{text}" placeholder="textmessage"><br>
 
-			<input type="text" th:field="*{user.userName)" placeholder="username">
+			<input type="text" th:field="*{user.userName}" placeholder="username"><br>
 
-			<input type="text" th:field="*{userStaff.id}" placeholder="userstaff">
+			<input type="text" th:field="*{userStaff.userName}" placeholder="userstaff"><br>
 
 			<input type="submit" value="update voucher">
 		</form>
-		</tr>
-		</tbody>
+	</tr>
+	</tbody>
 	</table>
 
 </div>
