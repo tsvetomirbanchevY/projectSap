@@ -1,7 +1,7 @@
 insert into users (username, password, email, firstname, lastname, bankaccount, phone, isvalid, city, license)
-values('az', '$2a$04$7GojSf8/kitGfcYqXAMSEuO1UzLmi2JPAOWczU.jyW9LM7xawepa2', 'az', 'az', 'az', 'az', '088', 1, 'sliven', 'C:\Users\LENOVO\Downloads\1.jpg'),
-('ti', '$2a$04$7GojSf8/kitGfcYqXAMSEuO1UzLmi2JPAOWczU.jyW9LM7xawepa2', 'ti', 'ti', 'ti', 'ti', '078', 1, 'sofia', 'C:\Users\LENOVO\Downloads\1.jpg'),
-('te', 'te', 'te', 'te', 'te', 'te', '087', 1, 'varna','C:\Users\LENOVO\Downloads\1.jpg');
+values('ivan555', '$2a$04$7GojSf8/kitGfcYqXAMSEuO1UzLmi2JPAOWczU.jyW9LM7xawepa2', 'ivan555@gmail.com', 'ivan', 'ivanov', 'ivanov', '0888888877', 1, 'sliven', '12555555'),
+('ti7898', '$2a$04$7GojSf8/kitGfcYqXAMSEuO1UzLmi2JPAOWczU.jyW9LM7xawepa2', 'ivanaivanova@abv.bg', 'ivana', 'petrova', 'petrova', '089888877', 1, 'sofia', '200000'),
+('tetete', '$2a$04$7GojSf8/kitGfcYqXAMSEuO1UzLmi2JPAOWczU.jyW9LM7xawepa2', 'petarpekov@gmail.com', 'petar', 'pekov', 'petkov', '0878888877', 1, 'varna','3000000');
 
 insert into roles (typeuser)
 values('client'),
@@ -16,18 +16,18 @@ insert into users_roles (user_id)
 values(1);
 
 insert into voucher (textm, user_id, user_staff_id)
-values('v1', 1, 3);
+values('voucher for a free trip', 1, 3);
 
  insert into cars (brand, model, isavailable, address, regplate)
  values("audi", "a4", 1, "sliven drujba", "ch4400"),
  ("audi", "a4", 0, "sliven kamani", "ch3030");
 
 insert into trips (dateoftrip, startroute, endroute, price, car_id, user_id)
-values('2000-02-02', 'sofia','sliven', 100.00, 1, 1),
-('2000-02-02', 'sofia','sliven', 100.00, 2, 2);
+values(now(), 'sofia','sliven', 10.00, 1, 1),
+(now(), 'sofia','sliven', 10.00, 2, 2);
 
-insert into invoice (typeinvoice, dateofinvoice, totalcost, user_id)
-values('daily', now(), 100.00, 1);
+insert into invoice (dateofinvoice, totalcost, user_id)
+values(now(), 10.00, 1);
 
  insert into staff_cars (car_id, user_id, car_main)
  values(1, 1, 'repair');
@@ -41,8 +41,9 @@ select * from users_roles;
 select * from voucher;
 select * from cars;
 select * from trips;
--- select * from staff_cars;
--- select * from invoice_trips; 
+select * from staff_cars;
+select * from invoice_trips; 
+select * from invoice; 
 
 
 

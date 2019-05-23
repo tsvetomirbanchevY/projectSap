@@ -8,6 +8,8 @@ import org.springframework.web.context.support.GenericWebApplicationContext;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
@@ -40,7 +42,16 @@ public class InvoiceController {
     @GetMapping("/findalldailyinvoices")
     public String findAllDaily(Model model) {
         Users user = (Users)context.getBean("usertemp");
-        model.addAttribute("invoiceslist", invoiceService.findAllDaily(user.getId()));
+        DateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        model.addAttribute("invoiceslist", invoiceService.findAllDaily(user.getId(), date));
+        return "invoiceslist";
+    }
+
+    @GetMapping("/findallmonthlyinvoices")
+    public String findAllMonthly(Model model) {
+        Users user = (Users)context.getBean("usertemp");
+        model.addAttribute("invoiceslist", invoiceService.findAllMonthly(user.getId()));
         return "invoiceslist";
     }
 

@@ -21,9 +21,9 @@
 	<table class="table table-bordered table-striped">
 		<form action="#" th:action="@{/staffcars/updatestaffcars/{id}(id=${staffcars.id})}" th:object="${staffcars}" method="post">
 
-			<input type="text" th:field="*{user.userName}" placeholder="username"><br>
-
 			<input type="number" th:field="*{car.id}" placeholder="car id"><br>
+
+			<input type="text" th:field="*{user.userName}" placeholder="staff un"><br>
 
 			<input type="text" th:field="*{carMain}" placeholder="type of maintanence"><br>
 

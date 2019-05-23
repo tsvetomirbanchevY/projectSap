@@ -77,6 +77,11 @@ public class VoucherServiceImpl implements VoucherService {
         voucherRepository.deleteById(theId);
     }
 
+    public List<Invoice> findAllMyVouchers(int userId)
+    {
+        return voucherRepository.findAllMyVouchers(userId);
+    }
+
 }
 
 

@@ -51,18 +51,15 @@ public class StaffCarsServiceImpl implements StaffCarsService {
 
     @Override
     public void save(StaffCars staffCar) {
-        Users staffUser = (Users)mediator.getBean("usertemp");
-        staffCar.setUser(staffUser);
-        List<StaffCars> userStaffList = staffUser.getStaffCars();
-        userStaffList.add(staffCar);
-        staffUser.setStaffCars(userStaffList);
+        String userName = staffCar.getUser().getUserName();
+        Users user =  usersRepository.findByUserName(userName);
+        staffCar.setUser(user);
+        user.addStaffCars(staffCar);
         Cars car = carsRepository.findCarsById(staffCar.getCar().getId());
         staffCar.setCar(car);
-        List<StaffCars> carStaffList = car.getStaffCars();
-        carStaffList.add(staffCar);
-        car.setStaffCars(carStaffList);
+        car.addStaffCars(staffCar);
         carsRepository.save(car);
-        usersRepository.save(staffUser);
+        usersRepository.save(user);
         staffCarsRepository.save(staffCar);
     }
 

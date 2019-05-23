@@ -2,9 +2,12 @@ package com.tsyb.project;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.validator.constraints.Length;
+
 import java.util.Base64;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,8 +21,10 @@ public class Users {
     @Column(name = "username")
     private String userName;
     @Column(name = "password")
+    @Length(min = 4, message = "The field must be at least 4 characters")
     private String password;
     @Column(name = "email")
+    @Email
     private String email;
     @Column(name = "firstname")
     private String firstName;
@@ -47,7 +52,7 @@ public class Users {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     private List<Voucher> vouchers;
     @JsonManagedReference
-    @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "user",  fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     private List<StaffCars> staffCars;
     @JsonManagedReference
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = {CascadeType.ALL})
@@ -55,15 +60,14 @@ public class Users {
     @JsonManagedReference
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = {CascadeType.ALL})
     private List<Invoice> invoices;
-    @Lob
     @Column(name="license")
-    private byte[] license;
+    private String license;
 
     public Users() {
         //default
     }
 
-    public Users(Integer id, String userName, String password, String email, String firstName, String lastName, String bankAccount, String city, boolean isValid, String phone, List<Roles> roles, List<Voucher> staffVouchers, List<Voucher> vouchers, List<StaffCars> staffCars, List<Trips> trips, List<Invoice> invoices, byte[] license) {
+    public Users(Integer id, String userName, String password, String email, String firstName, String lastName, String bankAccount, String city, boolean isValid, String phone, List<Roles> roles, List<Voucher> staffVouchers, List<Voucher> vouchers, List<StaffCars> staffCars, List<Trips> trips, List<Invoice> invoices, String license) {
         this.id = id;
         this.userName = userName;
         this.password = password;
@@ -203,11 +207,11 @@ public class Users {
         this.trips = trips;
     }
 
-    public byte[] getLicense() {
+    public String getLicense() {
         return license;
     }
 
-    public void setLicense(byte[] license) {
+    public void setLicense(String license) {
         this.license = license;
     }
 
@@ -262,11 +266,5 @@ public class Users {
         }
 
         invoices.add(tempInvoice);
-    }
-
-    public String generateBase64Image()
-    {
-       return Base64.getEncoder().encodeToString(getLicense());
-
     }
 }

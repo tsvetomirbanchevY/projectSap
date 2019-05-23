@@ -31,17 +31,17 @@ public class WebSecurityConfigAdapter extends WebSecurityConfigurerAdapter {
 
         http.
                 authorizeRequests()
-                .antMatchers("/**").permitAll()
-                .antMatchers("/login").permitAll()
-             //   .antMatchers("/users/addusersform").permitAll()
-              //  .antMatchers("/voucher/findallvouchers", "cars/findallcars",
-            //           "/invoice/findallinvoices", "/invoice/addinvoices", "/trips/addtrips")
-             //   .hasAuthority("client")
-              //  .antMatchers("/voucher/**", "/invoice/**", "/cars/**", "/users/deleteusers",
-            //            "/users/updateusers", "/users/findallusers", "/staffcars/addstaffcars",
-             //           "/staffcars/updatestaffcars", "/staffcars/findallstaffcars")
-             //   .hasAuthority("staff")
-               // .antMatchers("/**").hasAuthority("boss")
+                .antMatchers("/", "/home", "/users/addusersform", "/users/add", "/login").permitAll()
+              /*  .antMatchers("/voucher/findallmyvouchers", "cars/findallavailablecars",
+                       "/invoice/findallmonthlyinvoices", "/invoice/addinvoicesform", "/invoice/addinvoices", "/trips/addtrips",
+                        "/invoice/findalldailyinvoices", "/trips/addtripsform", "/cars/endtrip")
+                .hasAuthority("client")
+                .antMatchers("/voucher/**", "/cars/**", "/users/deleteusers",
+                        "/users/updateusers", "/users/findallusers", "/staffcars/addstaffcars",
+                        "/staffcars/updatestaffcars", "/staffcars/findallstaffcars")
+                .hasAuthority("staff")
+                .antMatchers("/users/**", "/cars/**", "/voucher/**", "/invoice/**", "/trips/**", "/staffcars/**", "/**")
+                .hasAuthority("boss")*/
                 .anyRequest()
                 .authenticated().and().csrf().disable().formLogin()
                 .loginPage("/login").failureUrl("/login?error=true")
@@ -57,12 +57,6 @@ public class WebSecurityConfigAdapter extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception
     {
-//        auth.
-//                jdbcAuthentication()
-//               .dataSource(dataSource)
-//               .usersByUsernameQuery(usersQuery)
-//                .authoritiesByUsernameQuery(rolesQuery)
-//                .passwordEncoder(passwordEncoder);
               auth.authenticationProvider(authenticationProvider());
     }
 

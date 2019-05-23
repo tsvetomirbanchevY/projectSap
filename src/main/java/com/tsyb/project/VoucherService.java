@@ -14,6 +14,9 @@ public interface VoucherService {
 
     void update(Voucher user);
 
+    List<Invoice> findAllMyVouchers(int userId);
+
+
 
 }
 

@@ -15,7 +15,8 @@ public class TripsController {
 
     private TripsService tripsService;
 
-
+    @Autowired
+    private GenericWebApplicationContext mediator;
     public TripsController()
     {
         //default
@@ -49,9 +50,14 @@ public class TripsController {
 
     @GetMapping("/addtripsform")
     public String addTripsForm(Model model) {
-        Trips trip= new Trips();
-        model.addAttribute("trips", trip);
-        return "addtripsform";
+        Trips trip = new Trips();
+        Users user = (Users) mediator.getBean("usertemp");
+        if (user.isValid()) {
+            model.addAttribute("trips", trip);
+            return "addtripsform";
+        } else {
+            return "Please await validation from staff";
+        }
     }
 
     @PostMapping("/addtrips")

@@ -29,17 +29,16 @@ public class CarsController {
 
     @GetMapping("/findallavailablecars")
     public String findAllAvailable(Model model) {
-        Users user = (Users)context.getBean("usertemp");
+        Users user = (Users) context.getBean("usertemp");
         System.out.println(user.getUserName());
-
-        model.addAttribute("carslist", carsService.findByIsAvailable(user.getCity()));
-        return "carslist";
+                model.addAttribute("carslist", carsService.findByIsAvailable(user.getCity()));
+                return "carslist";
     }
 
     @PostMapping("/endtrip")
     public String endTrip(Model model) {
-        Cars currentCar = (Cars)context.getBean("cartemp");
-        if(currentCar.getBattery()!=0){
+        Cars currentCar = (Cars) context.getBean("cartemp");
+        if (currentCar.getBattery() >=20) {
             currentCar.setAvailable(true);
         }
         carsService.save(currentCar);

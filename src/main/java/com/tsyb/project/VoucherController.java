@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.support.GenericWebApplicationContext;
 
 import java.util.List;
 
@@ -12,6 +13,9 @@ import java.util.List;
 public class VoucherController {
 
     private VoucherService voucherService;
+
+    @Autowired
+    GenericWebApplicationContext context;
 
     public VoucherController() {
         //default
@@ -29,6 +33,12 @@ public class VoucherController {
         return "voucherlist";
     }
 
+    @GetMapping("/findallmonthlyinvoices")
+    public String findAllMonthly(Model model) {
+        Users user = (Users) context.getBean("usertemp");
+        model.addAttribute("invoiceslist", voucherService.findAllMyVouchers(user.getId()));
+        return "invoiceslist";
+    }
     @GetMapping("/voucher/{id}")
     public String getVouchers(Model model, @PathVariable int id) {
 

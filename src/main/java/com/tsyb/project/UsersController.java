@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Base64;
 import java.util.List;
 
 
@@ -27,6 +28,7 @@ public class UsersController {
 
     @GetMapping("/findallusers")
     public String findAll(Model model) {
+
         model.addAttribute("userslist", usersService.findAll());
          return "userslist";
     }
@@ -61,7 +63,7 @@ public class UsersController {
         }
         user.setId(0);
         usersService.save(user);
-        return "/home";
+        return "index";
     }
 
     @GetMapping("/updateusersform/{id}")

@@ -25,7 +25,6 @@
 				<th>price</th>
 				<th>date</th>
 				<th>car</th>
-				<th>user</th>
 			</tr>
 		</thead>
 
@@ -36,7 +35,7 @@
 				<td th:text="${tempTrip.end}"></td>
 				<td th:text="${tempTrip.price}"></td>
 				<td th:text="${tempTrip.date}"></td>
-				<td th:text="${tempTrip.address}"></td>
+				<td th:text="${tempTrip.car.id}"></td>
 
 			</tr>
 		</tbody>

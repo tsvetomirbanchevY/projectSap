@@ -3,7 +3,11 @@ background-color: #90EE90;
 text-align: left;
 color: white;
 }
-
+img{
+align:middle;
+width: 500px;
+height: 500px;
+}
 table, th, td {
 color: black;
 background-color: white;

@@ -14,25 +14,20 @@ public class StaffCars {
     @JsonBackReference
     @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "user_id")
-    Users user;
+    private Users user;
     @JsonBackReference
     @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "car_id")
-    Cars car;
-    private enum CarMaintenance {
-       repair,
-       tire_check
-    }
+    private Cars car;
     @Column(name = "car_main")
-    @Enumerated(EnumType.STRING)
-    private CarMaintenance carMain;
+    private String carMain;
 
     public StaffCars()
     {
         //default
     }
 
-    public StaffCars(Integer id, Users user, Cars car, CarMaintenance carMain) {
+    public StaffCars(Integer id, Users user, Cars car, String carMain) {
         this.id = id;
         this.user = user;
         this.car = car;
@@ -51,7 +46,7 @@ public class StaffCars {
         return user;
     }
 
-    public void setUser(Users staff) {
+    public void setUser(Users user) {
         this.user = user;
     }
 
@@ -63,11 +58,11 @@ public class StaffCars {
         this.car = car;
     }
 
-    public CarMaintenance getCarMain() {
+    public String getCarMain() {
         return carMain;
     }
 
-    public void setCarMain(CarMaintenance carMain) {
+    public void setCarMain(String carMain) {
         this.carMain = carMain;
     }
 }

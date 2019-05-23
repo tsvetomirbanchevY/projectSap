@@ -12,7 +12,6 @@ import java.util.List;
 
 @Controller
 @RequestMapping(path = "/staffcars")
-
 public class StaffCarsController {
 
     private StaffCarsService staffCarsService;
@@ -61,7 +60,7 @@ public class StaffCarsController {
     public String addStaffCar(@ModelAttribute("staffcars") StaffCars staffCar) {
         staffCar.setId(0);
         staffCarsService.save(staffCar);
-        return "";
+        return "staffcarslist";
     }
 
     @GetMapping("/updatestaffcarsform/{id}")

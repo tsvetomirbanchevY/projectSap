@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.support.GenericWebApplicationContext;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -75,9 +76,16 @@ public class InvoiceServiceImpl implements InvoiceService {
 
 
     @Override
-    public List<Invoice> findAllDaily(int userId)
+    public List<Invoice> findAllDaily(int userId, Date date)
     {
-        return invoiceRepository.findAllDaily(userId);
+        return invoiceRepository.findAllDaily(userId, date);
+    }
+
+
+    @Override
+    public List<Invoice> findAllMonthly(int userId)
+    {
+        return invoiceRepository.findAllMonthly(userId);
     }
 
 }

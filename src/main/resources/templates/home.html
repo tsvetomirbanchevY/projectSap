@@ -27,37 +27,28 @@
 </div>
 <div sec:authorize="hasAuthority('boss')">
 	<a href="/users/findallusers">view all users</a><br>
-	<a href="/users/updateusersform">update a user</a><br>
 	<a href="/cars/findallcars">view all cars</a><br>
-	<a href="/cars/updatecarsform">update a car</a><br>
-	<a href="/cars/deletecars">delete a car</a><br>
 	<a href="/cars/addcarsform">add a new car</a><br>
 	<a href="/voucher/findallvouchers">view all vouchers</a><br>
-	<a href="/voucher/updatevouchersform">update a voucher</a><br>
 	<a href="/voucher/addvouchersform">add a new voucher</a><br>
 </div>
 <div sec:authorize="hasAuthority('client')">
 	<a href="/trips/addtripsform">create a new trip</a><br>
 	<a href="/cars/findallavailablecars">view all cars</a><br>
-	<a href="/voucher/findallvouchers">view all vouchers</a><br>
-	<a href="/invoice/findallinvoices">view all invoices</a><br>
-	<a href="/invoice/addinvoicesform">add a new invoice</a><br>
+	<a href="/voucher/findallmyvouchers">view all vouchers</a><br>
+	<a href="/invoice/findalldailyinvoices">view all daily invoices</a><br>
+	<a href="/invoice/findallmonthlyinvoices">view all monthly invoices</a><br>
+
 </div>
 <div sec:authorize="hasAuthority('staff')">
 	<a href="/users/findallusers">view all users</a><br>
-	<a href="/users/updateusersform">update a user</a><br>
 	<a href="/cars/findallcars">view all cars</a><br>
-	<a href="/cars/updatecarsform">update a car</a><br>
 	<a href="/cars/addcarsform">add a new car</a><br>
 	<a href="/voucher/findallvouchers">view all vouchers</a><br>
-	<a href="/voucher/updatevouchersform">update a voucher</a><br>
 	<a href="/voucher/addvouchersform">add a new voucher</a><br>
 	<a href="/staffcars/findallstaffcars">view all repairs</a><br>
-	<a href="/staffcars/updatestaffcarsform">update a repair</a><br>
 	<a href="/staffcars/addstaffcarsform">add a new repair</a><br>
 	<a href="/invoice/findallinvoices">view all invoices</a><br>
-	<a href="/invoice/updateinvoicesform">update a invoice</a><br>
-	<a href="/invoice/addinvoicesform">add a new invoice</a><br>
 </div>
 </form:form>
 </div>

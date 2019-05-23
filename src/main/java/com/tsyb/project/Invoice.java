@@ -18,14 +18,6 @@ public class Invoice {
     private Double totalCost;
     @Column(name = "firm")
     private String firm;
-    private enum TypeInvoice {
-        monthly,
-        daily,
-        overall
-    }
-    @Column(name = "typeinvoice")
-    @Enumerated(EnumType.STRING)
-    private TypeInvoice typeInvoice;
     @Column(name = "dateofinvoice")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.TIMESTAMP)
@@ -47,11 +39,10 @@ public class Invoice {
         //default
     }
 
-    public Invoice(Integer id, Double totalCost, String firm, TypeInvoice typeInvoice, Date dateOfInvoice, Users user, List<Trips> trips) {
+    public Invoice(Integer id, Double totalCost, String firm, Date dateOfInvoice, Users user, List<Trips> trips) {
         this.id = id;
         this.totalCost = totalCost;
         this.firm = firm;
-        this.typeInvoice = typeInvoice;
         this.dateOfInvoice = dateOfInvoice;
         this.user = user;
         this.trips = trips;
@@ -79,14 +70,6 @@ public class Invoice {
 
     public void setFirm(String firm) {
         this.firm = firm;
-    }
-
-    public TypeInvoice getTypeInvoice() {
-        return typeInvoice;
-    }
-
-    public void setTypeInvoice(TypeInvoice typeInvoice) {
-        this.typeInvoice = typeInvoice;
     }
 
     public Date getDateOfInvoice() {

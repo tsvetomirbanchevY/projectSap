@@ -13,7 +13,7 @@ bankaccount varchar(255) not null,
 phone varchar(255) not null,
 isvalid boolean not null default 0,
 city varchar(255) not null,
-license BLOB
+license varchar(255) not null
 );
 
 create table roles(
@@ -67,7 +67,6 @@ REFERENCES cars(id)
 
 create table invoice(
 id int not null primary key auto_increment,
-typeinvoice ENUM('monthly', 'daily', 'overall') default 'daily',
 dateofinvoice DATETIME default now(),
 totalcost double not null,
 firm varchar(255) not null default 'spark',
@@ -84,7 +83,7 @@ CONSTRAINT FOREIGN KEY(user_id)
 REFERENCES users(id),
 CONSTRAINT FOREIGN KEY(car_id)
 REFERENCES cars(id),
-car_main ENUM('repair', 'tire_check')
+car_main varchar(255) not null default 'repair'
 );
 
 create table invoice_trips(
